@@ -1,4 +1,10 @@
-const { createUser, deleteUser, updateUser } = require("../models/userModel");
+const {
+  createUser,
+  deleteUser,
+  updateUser,
+  getUser,
+} = require("../models/userModel");
+const responseHandler = require("../ResponseHandler");
 
 module.exports = {
   createUser: async (req, res) => {
@@ -12,7 +18,6 @@ module.exports = {
       });
     }
   },
-
   deleteUser: async (req, res) => {
     try {
       const users = await deleteUser(req.query);
@@ -29,6 +34,17 @@ module.exports = {
     } catch (error) {
       console.log(error);
       return error;
+    }
+  },
+
+  getUser: async (req, res) => {
+    try {
+      const user = await getUser(req.query);
+      responseHandler(user, res);
+    } catch (error) {
+      return res.send({
+        error: error,
+      });
     }
   },
 };
