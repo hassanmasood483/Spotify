@@ -14,4 +14,5 @@ var routes = require("express").Router();
 routes.post("/create", createUserValidate, createUser);
 routes.delete("/deleteUser", deleteUser);
 routes.patch("/updateUser", updateUserValidate, updateUser);
+
 module.exports = routes;

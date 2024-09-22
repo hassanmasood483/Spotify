@@ -12,22 +12,7 @@ module.exports = {
       return { error: error.message };
     }
   },
-  getUser: async ({ userId, username }) => {
-    try {
-      const users = await models.users.findOne({
-        where: {
-          ...(userId ? { userId: userId } : { username: username }),
-        },
-        // attributes: {
-        //   exclude: ["password"],
-        // },
-      });
-      return { response: users };
-    } catch (error) {
-      console.error(error);
-      return { error: error };
-    }
-  },
+
   deleteUser: async ({ userId, username }) => {
     try {
       const user = await models.users.destroy({
